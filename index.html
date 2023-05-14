@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <style>
+        .input-container {
+            text-align: center;
+            width: 600px;
+            margin-top: 250px;
+            margin-right: 300px;
+        }
+    </style>
+
+
+    <title>Beginning</title>
+</head>
+
+<body>
+
+
+    <div class="input-container">
+        <h2>In what country were you born?</h2>
+        <input id='text' type="text" placeholder="Enter text">
+        <span id="span"></span>
+    </div>
+
+    <script>
+        const myInput = document.getElementById('text');
+        document.addEventListener('keydown', function (e) {
+            console.log("%c" + e.key, "font-size:2em;");
+
+            if (e.key.length > 1) {
+
+                if (e.key == "Backspace") {
+                    myInput.value = myInput.value.substring(0, myInput.value.length - 1);
+                }
+                return;
+            }
+            myInput.value += e.key
+
+            if (myInput.value == "United States" || myInput.value == "US") {
+                console.log("you're in")
+                document.getElementById("myBox").setAttribute("position", "0 2 -5");
+            } else if (myInput.value == "Canada") {
+                console.log("Get out!")
+            } else {
+                console.log("you're not in")
+            }
+
+        });
+
+
+    </script>
+    <a-scene vr-mode-ui="enabled: false" keyboard-shortcuts="enterVR: false">
+        <!-- these are our entities! -->
+
+
+        <a-entity geometry="primitive: box" ; width="1" ; height="1"></a-entity>
+
+        <a-box id="myBox" position="2 0 0" color="red"></a-box>
+
+        <!-- this is our camera -->
+        <a-entity camera position="0 1 5" acceleration="25"></a-entity>
+    </a-scene>
+
+</body>
+
+</html>
